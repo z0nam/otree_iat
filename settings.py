@@ -12,21 +12,21 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
-    #{
-    #    'name': 'public_goods',
-    #    'display_name': "Public Goods",
-    #    'num_demo_participants': 3,
-    #    'app_sequence': ['public_goods', 'payment_info'],
-    #},
+    {
+       'name': 'Questionnaire',
+       'display_name': "설문조사",
+       'num_demo_participants': 3,
+       'app_sequence': ['testSurvey'],
+    },
 ]
 
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'ko'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
+REAL_WORLD_CURRENCY_CODE = 'KRW'
 USE_POINTS = True
 
 ROOMS = []

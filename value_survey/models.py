@@ -26,6 +26,12 @@ class Constants(BaseConstants):
         [L5_OTHER, "응답거부"],
     ]
 
+    YES, NO = True, False
+    BINARY_CHOICES = [
+        [YES, "있다"],
+        [NO, "없다"],
+    ]
+
 
 class Subsession(BaseSubsession):
     pass
@@ -36,14 +42,24 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
-    # faminist_self_awareness = models.IntegerField(
-    #     label = "'나는 페미니스트이다' 에 대한 자신의 인식",
-    #     chocies = Constants.L5_CHOICES,
-    #     widget = widgets.RadioSelectHorizontal,
-    # )
+    faminist_self_awareness = models.IntegerField(
+        label = "'나는 페미니스트이다' 에 대한 자신의 인식",
+        choices = Constants.L5_CHOICES,
+        widget = widgets.RadioSelectHorizontal,
+    )
 
-    # faminist_definition = models.LongStringField(
-    #     label = "'페미니스트'의 정의",
-    #     widget = 
-    # )
+    faminist_definition = models.LongStringField(
+        label = "'페미니스트'의 정의",
+    )
+
+    female_boss_experience = models.BooleanField(
+        label = "여성 상사와의 업무 경험",
+        choices = Constants.BINARY_CHOICES,
+        widget = widgets.RadioSelectHorizontal,
+    )
+
+    male_boss_experience = models.BooleanField(
+        label = "남성 상사와의 업무 경험",
+        choices = Constants.BINARY_CHOICES,
+        widget = widgets.RadioSelectHorizontal,
+    )

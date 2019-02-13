@@ -3,22 +3,20 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class MyPage(Page):
+class ValueSurvey(Page):
+    form_model = 'player'
+    form_fields = [
+        'faminist_self_awareness',
+        'faminist_definition',
+        'female_boss_experience',
+        'male_boss_experience',
+    ]
+
+
+class ThanksNext(Page):
     pass
-
-
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
-
-
-class Results(Page):
-    pass
-
 
 page_sequence = [
-    MyPage,
-    ResultsWaitPage,
-    Results
+    ValueSurvey,
+    ThanksNext,
 ]

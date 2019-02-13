@@ -29,15 +29,6 @@ class BasicSurvey(Page):
         random.shuffle(choices)
         return choices
 
-    def marriage_state_choices(self):
-        choices = Constants.MARRIAGE_CHOICE.copy()
-        random.shuffle(choices)
-        return choices
-    
-    def family_income_type_choices(self):
-        choices = Constants.FAMILY_INCOME_CHOICE.copy()
-        random.shuffle(choices)
-        return choices
 
 class Thanks(Page):
     pass

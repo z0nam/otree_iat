@@ -6,19 +6,22 @@ from .models import Constants
 class MyPage(Page):
     pass
 
-
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
-
-
 class Results(Page):
     pass
 
 
 page_sequence = [
     MyPage,
-    ResultsWaitPage,
     Results
 ]
+
+
+"""
+김빛내리
+김영란
+박정림
+송연순
+심상정
+이은숙
+피우진
+"""

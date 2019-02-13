@@ -74,7 +74,7 @@ class Player(BasePlayer):
 
     born_month = models.IntegerField(
         label = "태어난 달",
-        choices = range(1,12),
+        choices = range(1,13),
         widget = widgets.RadioSelectHorizontal,
     )
 

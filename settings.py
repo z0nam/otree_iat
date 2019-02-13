@@ -14,6 +14,12 @@ SESSION_CONFIG_DEFAULTS = {
 # 처치효과 리스트. 가급적 순서에 맞춰 배열할 것
 
 SESSION_CONFIGS = [
+    {
+       'name': 'introduction',
+       'display_name': "실험 안내문 및 동의서",
+       'num_demo_participants': 1,
+       'app_sequence': ['introduction'],
+   },
    {
        'name': 'treatment_image_female',
        'display_name': "여성이미지 처치 테스트",
@@ -37,7 +43,7 @@ SESSION_CONFIGS = [
    },
    {
        'name': 'treatment_educative_quiz',
-       'display_name': "중립이미지(no_treatment) 처치 테스트",
+       'display_name': "인식개선퀴즈 처치 테스트",
        'num_demo_participants': 1,
        'app_sequence': ['treatment_educative_quiz'],
        'treatment': 'treatment_educative_quiz',

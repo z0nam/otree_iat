@@ -4,17 +4,17 @@ from otree.api import (
 )
 
 
-author = 'Namun Cho <mailto:kberi.namun@gmail.com>'
+author = 'Namun Cho <mailto:kberi.namun@gmila.com>'
 
 doc = """
-여성 이미지 treatment
+실험참가자 최초 안내 및 동의서
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'treatment_image_female'
+    name_in_url = 'introduction'
     players_per_group = None
-    num_rounds = 20
+    num_rounds = 1
 
 
 class Subsession(BaseSubsession):
@@ -26,5 +26,4 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    correctness = models.BooleanField()
-
+    pass

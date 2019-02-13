@@ -11,13 +11,89 @@ SESSION_CONFIG_DEFAULTS = {
     'doc': "",
 }
 
+# 처치효과 리스트. 가급적 순서에 맞춰 배열할 것
+
 SESSION_CONFIGS = [
-    {
-       'name': 'Questionnaire',
-       'display_name': "설문조사",
-       'num_demo_participants': 3,
-       'app_sequence': ['testSurvey'],
-    },
+   {
+       'name': 'treatment_image_female',
+       'display_name': "여성이미지 처치 테스트",
+       'num_demo_participants': 1,
+       'app_sequence': ['treatment_image_female'],
+       'treatment': 'treatment_image_female',
+   },
+   {
+       'name': 'treatment_image_male',
+       'display_name': "남성이미지 처치 테스트",
+       'num_demo_participants': 1,
+       'app_sequence': ['treatment_image_male'],
+       'treatment': 'treatment_image_male',
+   },
+   {
+       'name': 'no_treatment',
+       'display_name': "중립이미지(no_treatment) 처치 테스트",
+       'num_demo_participants': 1,
+       'app_sequence': ['no_treatment'],
+       'treatment': 'no_treatment',
+   },
+   {
+       'name': 'treatment_educative_quiz',
+       'display_name': "중립이미지(no_treatment) 처치 테스트",
+       'num_demo_participants': 1,
+       'app_sequence': ['treatment_educative_quiz'],
+       'treatment': 'treatment_educative_quiz',
+   },
+   {
+       'name': 'value_survey',
+       'display_name': "가부장적 가치관 설문조사",
+       'num_demo_participants': 1,
+       'app_sequence': ['value_survey'],
+   },
+   {
+       'name': 'basic_survey',
+       'display_name': "기초 설문조사",
+       'num_demo_participants': 1,
+       'app_sequence': ['basic_survey'],
+   },
+   {
+       'name': 'iat',
+       'display_name': "IAT (IAT 테스트)",
+       'num_demo_participants': 1,
+       'app_sequence': ['iat'],
+   },
+   {
+       'name': 'prototype',
+       'display_name': "IAT for KBERI (IAT+설문. prototype)",
+       'num_demo_participants': 1,
+       'app_sequence': ['iat', 'basic_survey'],
+   },
+   {
+       'name': 'kberi_treatment_image_female',
+       'display_name': "IAT for KBERI (여성이미지+IAT+설문. prototype)",
+       'num_demo_participants': 1,
+       'app_sequence': ['treatment_image_female','iat', 'basic_survey'],
+       'treatment': 'treatment_image_female',
+   },
+   {
+       'name': 'kberi_treatment_image_male',
+       'display_name': "IAT for KBERI (남성이미지+IAT+설문. prototype)",
+       'num_demo_participants': 1,
+       'app_sequence': ['treatment_image_male','iat', 'basic_survey'],
+       'treatment': 'treatment_image_male',
+   },
+   {
+       'name': 'kberi_no_treatment',
+       'display_name': "IAT for KBERI (꽃과나비이미지+IAT+설문. prototype)",
+       'num_demo_participants': 1,
+       'app_sequence': ['no_treatment','iat', 'basic_survey'],
+       'treatment': 'no_treatment',
+   },
+   {
+       'name': 'kberi_treatment_educative_quiz',
+       'display_name': "IAT for KBERI (인식개선퀴즈+IAT+설문. prototype)",
+       'num_demo_participants': 1,
+       'app_sequence': ['no_treatment','iat', 'basic_survey'],
+       'treatment': 'no_treatment',
+   },
 ]
 
 
@@ -35,7 +111,8 @@ ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
-DEMO_PAGE_INTRO_HTML = """ """
+DEMO_PAGE_INTRO_HTML = """ 환영합니다! 한국행동경제학연구소 (KBERI)
+의 IAT 테스트 페이지입니다!  """
 
 SECRET_KEY = 'rl6fs##!%y73glp&vojb!73ly^j#92201erbzlj!l)yh52l0g3'
 

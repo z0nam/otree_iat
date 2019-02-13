@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    기초 설문조사
+{% endblock %}
+
+{% block content %}
+    <p>아래의 질문들에 답해주시기 바랍니다. </p>
+
+    {% formfield player.born_year label="선생님께서는 몇년도에 태어나셨습니까? (4자리)"%}
+
+    {% formfield player.born_month label="태어난 달" %}
+
+    {% formfield player.gender  label="선생님의 성별은 무엇입니까?" %}
+
+    {% formfield player.marriage_state label = "결혼 상태" %}
+
+    {% formfield player.family_income_type label = "가족 형태 및 주소득자" %}
+
+    {% formfield player.income_level label = "지난 6개월동안의 세금을 제외한 평균 월소득 수준 (실수령액)"%}
+
+    {% next_button %}
+
+{% endblock %}

@@ -4,15 +4,15 @@ from otree.api import (
 )
 
 
-author = 'Namun Cho'
+author = 'Your name here'
 
 doc = """
-서베이 테스트
+Your app description
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'testSurvey'
+    name_in_url = 'no_treatment'
     players_per_group = None
     num_rounds = 1
 
@@ -26,5 +26,4 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    name = models.StringField()
-    age = models.IntegerField()
+    pass

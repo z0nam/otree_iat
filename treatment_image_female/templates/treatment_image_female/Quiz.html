@@ -1,0 +1,91 @@
+{% extends "global/Quiz.html" %}
+{% load otree static %}
+
+{% block title %}
+    <div align="center">{{ quiz_title }}</div>
+{% endblock %}
+
+{% block app_scripts %}
+    <script>
+
+    const submit_basic_variables = function() {
+        $('#question_number').val("{{ filename }}");
+        $('#answer').val("{{ left_key }}");
+        $('#form').submit();
+    };
+
+    const submit_for_correct_answer = function (){
+        $("#isCorrect").val("True");
+        submit_basic_variables();
+    };
+
+    const submit_for_incorrect_answer = function (){
+        $("#isCorrect").val("False");
+        submit_basic_variables();
+    };
+
+    $(document).keydown(function (event) {
+        const left_keycode = "{{ left_key }}".charCodeAt(0);
+        const right_keycode = "{{ right_key }}".charCodeAt(0);
+        const location_of_correct_answer = "{{ location_of_correct_answer }}";
+        if (event.which === left_keycode) {
+            if (location_of_correct_answer === "left") {
+                submit_for_correct_answer();
+            } else {
+                submit_for_incorrect_answer();
+            }
+        } else if (event.which === right_keycode) {
+            if (location_of_correct_answer === "right") {
+                submit_for_correct_answer();
+            } else {
+                submit_for_incorrect_answer();
+            }
+        } else {
+            alert("{{ right_key }}, 혹은 {{ left_key }} 키 만을 누르셔야 합니다");
+        }
+    });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <p align="center">
+        {{ Constants.num_rounds }}라운드 중 {{ subsession.round_number }}라운드
+    </p>
+    <div class="container">
+        <div class="row">
+            <div class = "col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+            <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <img class="img-responsive" src="{% static image_path %}" alt="QUIZ_IMAGE" width=100% style="display:inline-block">
+            </div>
+            <div class = "col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+        </div>
+        <div class="row" >
+            <div style="width:50%;display:inline-block;background-color:cornflowerblue">
+                <p>
+                    맞으면 키보드의 {{ left_key }} 키
+                </p>
+                <p>
+                    {{ left_explanation }}
+                </p>
+            </div>
+            <div style="width:50%;display:inline-block;background-color:aquamarine">
+                <p>
+                    맞으면 키보드의 {{ right_key }} 키
+                </p>
+                <p>
+                    {{ right_explanation }}
+                </p>
+            </div>
+        </div>
+
+    </div>
+<form id="form">
+    <input type="hidden" name = "isCorrect" id = "isCorrect">
+    {{ form.isCorrect.errors }}
+    <input type="hidden" name = "question_number" id = "question_number">
+    <input type="hidden" name = "answer" id = "answer">
+    <input type="hidden" name = "response_time" id="response_time">
+</form>
+
+
+{% endblock content %}

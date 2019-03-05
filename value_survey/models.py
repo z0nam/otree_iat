@@ -1,6 +1,5 @@
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
-    Currency as c, currency_range
 )
 
 
@@ -16,7 +15,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
-    L5_1, L5_2, L5_3, L5_4, L5_5, L5_OTHER = 1,2,3,4,5,99
+    L5_1, L5_2, L5_3, L5_4, L5_5, L5_OTHER = 1, 2, 3, 4, 5, 99
     L5_CHOICES = [
         [L5_1, "매우 그렇지 않다"],
         [L5_2, "그렇지 않다"],
@@ -43,23 +42,23 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     faminist_self_awareness = models.IntegerField(
-        label = "'나는 페미니스트이다' 에 대한 자신의 인식",
-        choices = Constants.L5_CHOICES,
-        widget = widgets.RadioSelectHorizontal,
+        label="'나는 페미니스트이다' 에 대한 자신의 인식",
+        choices=Constants.L5_CHOICES,
+        widget=widgets.RadioSelectHorizontal,
     )
 
     faminist_definition = models.LongStringField(
-        label = "'페미니스트'의 정의",
+        label="'페미니스트'의 정의",
     )
 
     female_boss_experience = models.BooleanField(
-        label = "여성 상사와의 업무 경험",
-        choices = Constants.BINARY_CHOICES,
-        widget = widgets.RadioSelectHorizontal,
+        label="여성 상사와의 업무 경험",
+        choices=Constants.BINARY_CHOICES,
+        widget=widgets.RadioSelectHorizontal,
     )
 
     male_boss_experience = models.BooleanField(
-        label = "남성 상사와의 업무 경험",
-        choices = Constants.BINARY_CHOICES,
-        widget = widgets.RadioSelectHorizontal,
+        label="남성 상사와의 업무 경험",
+        choices=Constants.BINARY_CHOICES,
+        widget=widgets.RadioSelectHorizontal,
     )

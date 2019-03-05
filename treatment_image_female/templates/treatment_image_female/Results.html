@@ -2,11 +2,18 @@
 {% load otree static %}
 
 {% block title %}
-    Page title
+    {% if player.isCorrect %} 맞습니다!
+    {% else %} 틀렸습니다!
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-
+    {{ name }} 님은
+    {% if player.location_of_correct_answer == 'left' %}
+        {{ left_explanation }} 입니다.
+    {% else %}
+        {{ right_explanation }} 입니다.
+    {% endif %}
     {% next_button %}
 {% endblock %}
 

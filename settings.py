@@ -63,7 +63,7 @@ SESSION_CONFIGS = [
    {
        'name': 'iat',
        'display_name': "IAT (IAT 테스트) (작성중)",
-       'num_demo_participants': 1,
+       'num_demo_participants': 3,
        'app_sequence': ['iat'],
    },
    {
@@ -118,7 +118,7 @@ ADMIN_USERNAME = 'admin'
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
 DEMO_PAGE_INTRO_HTML = """ 환영합니다! 한국행동경제학연구소 (KBERI)
-의 IAT 테스트 페이지입니다!  """
+의 IAT 테스트 페이지입니다! """
 
 SECRET_KEY = 'rl6fs##!%y73glp&vojb!73ly^j#92201erbzlj!l)yh52l0g3'
 

@@ -1,0 +1,245 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    KBERI_IAT
+{% endblock %}
+
+{% block app_scripts %}
+    <script src="{% static 'iat/iat.js' %}?{{ seed_for_refresh_js_cache }}"></script>
+    <script>
+        /** data stack strategy
+
+        - longstring csv 로 저장하는 것은 OECD와 같음
+        - 피리어드별 데이터가 입력되고 있는 것과 달리 vertical stack을 할까 함.
+        - period, key, timestamp의 방식.
+        - 일단 multi table. 디버깅을 위한 것이기도 함.
+        - table 1(category_table): 해당 블럭 기본 정보. - left_main_category, right_main_category, left_sub_category, right_sub_category
+        - table 2(item_table): 해당 블럭 문제 - iat_item, correct_side
+        - table 3(keypress_table): 키입력 timestamp - period, keycode, timestamp (무슨 키가 눌렸든)
+        - table 4(iat_table): 문제 (human readable) -
+            period, left_category, right_category, item, correct_side (LR), timestamp, elapsed_time
+            이건 L or R 키가 눌린 거만
+
+         */
+        // table declaration
+
+        let category_table = [];
+        let item_table = [];
+        let keypress_table = [];
+        let iat_table = [];
+
+        // global variables initialization
+
+        console.log("IAT.html script begin!");
+        let round_number = {{ subsession.round_number }};
+        let iat_items = {{ iat_items|json }};
+        console.log(iat_items);
+        let correct_sides = {{ correct_sides|json }};
+        let side = {
+            'left': {{ Constants.LEFT }},
+            'right': {{ Constants.RIGHT }},
+        };
+        let left_keycode = {{ Constants.LEFT_KEYCODE }};
+        let right_keycode = {{ Constants.RIGHT_KEYCODE }};
+        console.log(correct_sides);
+        const category = {
+            'main': {
+                'left': {{ left_main_category|json }},
+                'right': {{ right_main_category|json }},
+            },
+            'sub': {
+                'left': {{ left_sub_category|json }},
+                'right': {{ right_sub_category|json }},
+            }
+        };
+        let left_category_name = {{ left_category_name|json }};
+        let right_category_name = {{ right_category_name|json }};
+        category_table.push(new Category(round_number, category.main.left,
+            category.main.right, category.sub.left, category.sub.right,
+            left_category_name, right_category_name, left_keycode, right_keycode));
+        item_table.push(new Item(iat_items, correct_sides));
+
+        console.log(category);
+
+        let current_period = 1;
+        const last_period = iat_items.length;
+        let timer;
+
+        $(document).ready(function(){
+            begin();
+        });
+
+        $(document).keydown(function(event){
+            if (current_period>last_period){
+                display_next_block_box();
+                if(event.which === {{ Constants.META_KEYCODE }}){
+                    console.log("meta key pressed!");
+                    save_and_exit();
+                }
+                return;
+            }
+            keypress_table.push(new Keypress(current_period, event.which, new Date().getTime()));
+            let pressed_side = null;
+            if(is_key_valid(event.which)) {
+                pressed_side = which_side(event.which);
+                iat_table.push(new Iat(current_period, category.main.left, category.main.right,
+                    category.sub.left, category.sub.right,
+                    iat_items[current_period-1], correct_sides[current_period-1],
+                    new Date().getTime(), timer.get_elapsed(), event.which, pressed_side));
+                if(!is_correct(pressed_side, correct_sides[current_period-1])){
+                    mark_wrong();
+                    return;
+                }
+                if (is_last_period()){
+                    current_period++;
+                    hide_all_boxes();
+                    display_next_block_box();
+                    return;
+                }else{
+                    clear_screen();
+                    prepare_next_quiz();
+                }
+            }else{
+                // display warning (올바른 키를 입력해야 합니다. wrong key에 대한 data stack)
+                $('.wrong_key_box').css('opacity', '1');
+            }
+        });
+
+    </script>
+{% endblock %}
+
+{% block app_styles %}
+    <style>
+        .wrong_answer_mark {
+            display: none;
+            position: absolute;
+            left: 50vw;
+            top: 0vh;
+            margin-top: -125px;
+            margin-left: -125px;
+            font-size: 500px;
+            font-weight: normal;
+            color: red;
+        }
+        .wrong_key_box2{
+            display: none;
+            padding: 20px;
+            background-color: #FFAA3F;
+            color:white;
+            margin-bottom: 15px;
+            position: absolute;
+            left: 25vw;
+            top: 25vw;
+            width: 50vw;
+            opacity: 0.8;
+            border-style: solid;
+            border-width: 5px;
+            border-color: darkorange;
+        }
+        .wrong_key_box{
+            display:block;
+            opacity:0;
+            padding:20px;
+            background-color: #ffaa3f;
+            color:white;
+            margin-bottom: 15px;
+            position: relative;
+            border-style: solid;
+            border-width: 5px;
+            border-color: darkorange;
+        }
+        .next_block_box{
+            display: none;
+            padding: 20px;
+            background-color: yellow;
+            color:black;
+            margin-bottom: 15px;
+            position: absolute;
+            left: 20vw;
+            top: 25vw;
+            width: 60vw;
+            opacity: 0.8;
+            border-style: solid;
+            border-width: 5px;
+            border-color: darkslategrey;
+        }
+        .emph{
+            font-weight:bold;
+            color: #ff0000;
+        }
+        #left_panel{
+            width:50%;
+            display:inline-block;
+            background-color:cornflowerblue
+        }
+
+        #right_panel{
+            width:50%;
+            display:inline-block;
+            background-color:aquamarine;
+            flex-direction:column;
+            text-align:right;
+            justify-content:right;
+        }
+        #keyword{
+            display:block;
+            height:30vh;
+            font-size:100px;
+            margin-top:0vh;
+        }
+        .row_keyword{
+            text-align:center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row" id="progress"> 로딩중.. </div>
+        <div class="row" id="mainbox">
+             <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6"
+                  style="" id="left_panel">
+                <h2 id = "left_key">
+                    {{ Constants.LEFT_KEY_NAME }}
+                </h2>
+                <h1 id = "left_category">
+                    {{ left_category_name|safe|escape }}
+                </h1>
+            </div>
+            <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6" id="right_panel">
+                <h2 id = "right_key">
+                    {{ Constants.RIGHT_KEY_NAME }}
+                </h2>
+                <h1 id = "right_category">
+                    {{ right_category_name|safe|escape }}
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrong_key_box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    오류! 잘못된 키를 입력하셨습니다! <br>
+                    왼쪽은 <span class="emph">{{ Constants.LEFT_KEY_NAME }}</span>,
+                    오른쪽은 <span class='emph'>{{ Constants.RIGHT_KEY_NAME }}</span> 키를 입력해주세요!
+            </div>
+        </div>
+        <div class="row_keyword">
+            <div id="keyword">
+                로딩중... 잠시 기다려 주시기 바랍니다
+            </div>
+        </div>
+        <div class="next_block_box">
+            수고하셨습니다! <span class="emph">{{ Constants.META_KEY_NAME }}</span>를 눌러 다음으로 넘어가 주세요
+        </div>
+    </div>
+    <div class="wrong_answer_mark">×</div>
+
+    <form id="form">
+        <input type="hidden" name="category_table" id="category_table">
+        <input type="hidden" name="item_table" id="item_table">
+        <input type="hidden" name="keypress_table" id="keypress_table">
+        <input type="hidden" name="iat_table" id="iat_table">
+    </form>
+{% endblock %}
+
+

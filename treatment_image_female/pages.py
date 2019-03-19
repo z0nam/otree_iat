@@ -14,7 +14,7 @@ class Quiz(Page):
     ]
 
     def vars_for_template(self):
-        current_quiz = self.participant.vars['shuffled_quiz_set'][self.round_number]
+        current_quiz = self.participant.vars['shuffled_quiz_set'][self.round_number-1]
         print("***round number:{}".format(self.round_number))
         # print("****length of self.participant.vars: {}".format(len(self.participant.vars)))
         location_of_correct_answer = random.choice(['left', 'right'])
@@ -41,7 +41,9 @@ class Quiz(Page):
 class Results(Page):
 
     def vars_for_template(self):
-        return Quiz.vars_for_template(self)
+        vars_to_return=Quiz.vars_for_template(self).copy()
+        vars_to_return['seed_for_refresh']=random.random()
+        return vars_to_return
 
 
 page_sequence = [

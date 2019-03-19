@@ -75,21 +75,21 @@ SESSION_CONFIGS = [
     },
     {
         'name': 'kberi_treatment_image_male',
-        'display_name': "IAT for KBERI (남성이미지처치",
+        'display_name': "IAT for KBERI (남성이미지처치)",
         'num_demo_participants': 3,
         'app_sequence': ['introduction', 'treatment_image_male', 'iat', 'basic_survey', 'value_survey'],
         'treatment': 'treatment_image_male',
     },
     {
         'name': 'kberi_no_treatment',
-        'display_name': "IAT for KBERI (꽃과나비이미지처치",
+        'display_name': "IAT for KBERI (꽃과나비이미지처치)",
         'num_demo_participants': 3,
         'app_sequence': ['introduction', 'no_treatment', 'iat', 'basic_survey', 'value_survey'],
         'treatment': 'no_treatment',
     },
     {
         'name': 'kberi_treatment_educative_quiz',
-        'display_name': "IAT for KBERI (인식개선퀴즈처치",
+        'display_name': "IAT for KBERI (인식개선퀴즈처치)",
         'num_demo_participants': 3,
         'app_sequence': ['introduction', 'no_treatment', 'iat', 'basic_survey', 'value_survey'],
         'treatment': 'educative_quiz',
@@ -117,4 +117,4 @@ DEMO_PAGE_INTRO_HTML = """ 환영합니다! 한국행동경제학연구소 (KBER
 SECRET_KEY = 'rl6fs##!%y73glp&vojb!73ly^j#92201erbzlj!l)yh52l0g3'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree']
+INSTALLED_APPS = ['otree', 'babeljs']

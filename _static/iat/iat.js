@@ -1,4 +1,4 @@
-console.log("hello, iat!");
+console.log("hello, iat!{{Constants.META_KEYCODE}}");
 
 class Category {
     constructor(round_number, left_main_category, right_main_category,
@@ -157,4 +157,80 @@ const which_side = (keycode) => {
 
 const display_next_block_box = () => {
     $(".next_block_box").show();
-}
+};
+
+/** data stack strategy
+
+- longstring csv 로 저장하는 것은 OECD와 같음
+- 피리어드별 데이터가 입력되고 있는 것과 달리 vertical stack을 할까 함.
+- period, key, timestamp의 방식.
+- 일단 multi table. 디버깅을 위한 것이기도 함.
+- table 1(category_table): 해당 블럭 기본 정보. - left_main_category, right_main_category, left_sub_category, right_sub_category
+- table 2(item_table): 해당 블럭 문제 - iat_item, correct_side
+- table 3(keypress_table): 키입력 timestamp - period, keycode, timestamp (무슨 키가 눌렸든)
+- table 4(iat_table): 문제 (human readable) -
+    period, left_category, right_category, item, correct_side (LR), timestamp, elapsed_time
+    이건 L or R 키가 눌린 거만
+
+ */
+// table declaration
+
+let category_table = [];
+let item_table = [];
+let keypress_table = [];
+let iat_table = [];
+
+// global variables initialization
+
+console.log("IAT.html script begin!");
+
+category_table.push(new Category(round_number, category.main.left,
+    category.main.right, category.sub.left, category.sub.right,
+    left_keycode, right_keycode));
+item_table.push(new Item(iat_items, correct_sides));
+
+console.log(category);
+
+let current_period = 1;
+const last_period = iat_items.length;
+let timer;
+
+$(document).ready(function(){
+    begin();
+});
+
+$(document).keydown(function(event){
+    if (current_period>last_period){
+        display_next_block_box();
+        if(event.which === META_KEYCODE){
+            console.log("meta key pressed!");
+            save_and_exit();
+        }
+        return;
+    }
+    keypress_table.push(new Keypress(current_period, event.which, new Date().getTime()));
+    let pressed_side = null;
+    if(is_key_valid(event.which)) {
+        pressed_side = which_side(event.which);
+        iat_table.push(new Iat(current_period, category.main.left, category.main.right,
+            category.sub.left, category.sub.right,
+            iat_items[current_period-1], correct_sides[current_period-1],
+            new Date().getTime(), timer.get_elapsed(), event.which, pressed_side));
+        if(!is_correct(pressed_side, correct_sides[current_period-1])){
+            mark_wrong();
+            return;
+        }
+        if (is_last_period()){
+            current_period++;
+            hide_all_boxes();
+            display_next_block_box();
+            return;
+        }else{
+            clear_screen();
+            prepare_next_quiz();
+        }
+    }else{
+        // display warning (올바른 키를 입력해야 합니다. wrong key에 대한 data stack)
+        $('.wrong_key_box').css('opacity', '1');
+    }
+});

@@ -19,6 +19,8 @@ class Constants(BaseConstants):
     quiz_title = "인물 퀴즈"
     left_keycode = 49 # 1
     right_keycode = 48 # 0
+    META_KEYCODE = 32 # space bar
+    META_KEYNAME = "스페이스 바"
     players_per_group = None
 
     quiz_female = [
@@ -66,13 +68,13 @@ class Constants(BaseConstants):
         },
     ]
 
-    num_rounds = len(quiz_female)*2-1
+    num_rounds = len(quiz_female)*2
 
 
 class Subsession(BaseSubsession):
 
     def creating_session(self):  # shuffle quiz order
-        print("######creating session!")
+        # print("######creating session!")
         if self.round_number == 1:
             for p in self.get_players():
                 doubled_quiz_list = Constants.quiz_female + Constants.quiz_female  # 두번씩 나와야 하므로

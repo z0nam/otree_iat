@@ -59,18 +59,21 @@
             </div>
             <div class = "col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
         </div>
+        <div class="row">
+            <p></p>
+        </div>
         <div class="row" >
-            <div style="width:50%;display:inline-block;background-color:cornflowerblue">
+            <div class="left_quiz_panel h2">
                 <p>
-                    맞으면 키보드의 {{ left_key }} 키
+                    맞으면 키보드의 <span class="emph">{{ left_key }}</span> 키
                 </p>
                 <p>
                     {{ left_explanation }}
                 </p>
             </div>
-            <div style="width:50%;display:inline-block;background-color:aquamarine">
+            <div class="right_quiz_panel h2">
                 <p>
-                    맞으면 키보드의 {{ right_key }} 키
+                    맞으면 키보드의 <span class="emph">{{ right_key }}</span> 키
                 </p>
                 <p>
                     {{ right_explanation }}

@@ -28,7 +28,7 @@ class Constants(BaseConstants):
     META_KEYCODE = 32
     META_KEY_NAME = '스페이스 바'
 
-    OR = "</h1> <h4>또는</h4> <h1>"
+    OR = " 또는 "
 
 
 class Subsession(BaseSubsession):

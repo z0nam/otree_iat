@@ -69,7 +69,7 @@ const load_current_quiz = () => {
     timer = new Timer();
     $('html').fadeIn(0);
     $('#keyword').html(current_item.toString());
-    $('#progress').html(current_period.toString()+"/"+last_period.toString());
+    //$('#progress').html(current_period.toString()+"/"+last_period.toString());
 };
 
 const prepare_next_quiz = () => {

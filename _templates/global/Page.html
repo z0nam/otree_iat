@@ -6,6 +6,83 @@
 {% endblock %}
 
 {% block global_styles  %}
+    <style>
+        .wrong_answer_mark {
+            display: none;
+            position: absolute;
+            left: 50vw;
+            top: 0vh;
+            margin-top: -125px;
+            margin-left: -125px;
+            font-size: 500px;
+            font-weight: normal;
+            color: red;
+        }
+        .wrong_key_box{
+            display:block;
+            opacity:0;
+            padding:20px;
+            background-color: #ffaa3f;
+            color:white;
+            margin-bottom: 15px;
+            position: relative;
+            border-style: solid;
+            border-width: 5px;
+            border-color: darkorange;
+        }
+        .next_block_box{
+            display: none;
+            padding: 20px;
+            background-color: yellow;
+            color:black;
+            margin-bottom: 15px;
+            position: absolute;
+            left: 20vw;
+            top: 25vw;
+            width: 60vw;
+            opacity: 0.8;
+            border-style: solid;
+            border-width: 5px;
+            border-color: darkslategrey;
+        }
+        .emph{
+            font-weight:bold;
+            color: #ff0000;
+        }
+        #left_panel{
+            width:50%;
+            display:inline-block;
+            background-color:lightyellow;
+        }
+
+        #right_panel{
+            width:50%;
+            display:inline-block;
+            background-color:lightyellow;
+            flex-direction:column;
+            text-align:right;
+            justify-content:right;
+        }
+        #keyword{
+            display:block;
+            height:30vh;
+            font-size:100px;
+            margin-top:0vh;
+        }
+        .row_keyword{
+            text-align:center;
+        }
+
+        .keyword{
+            font-weight: bolder;
+        }
+        .main{
+            color: #008e00;
+        }
+        .sub{
+            color: #5182Eb;
+        }
+    </style>
 {% endblock %}
 
 {% block global_scripts  %}

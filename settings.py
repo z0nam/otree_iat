@@ -117,4 +117,4 @@ DEMO_PAGE_INTRO_HTML = """ 환영합니다! 한국행동경제학연구소 (KBER
 SECRET_KEY = 'rl6fs##!%y73glp&vojb!73ly^j#92201erbzlj!l)yh52l0g3'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree', 'babeljs']
+INSTALLED_APPS = ['otree']

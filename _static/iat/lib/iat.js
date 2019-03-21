@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-console.log("hello, iat!{{Constants.META_KEYCODE}}");
+// console.log("hello, iat!");
 
 var Category = function Category(round_number, left_main_category, right_main_category, left_sub_category, right_sub_category, left_keycode, right_keycode) {
     _classCallCheck(this, Category);
@@ -50,7 +50,6 @@ var Iat = function Iat(period, left_main_category, right_main_category, left_sub
 };
 
 var begin = function begin() {
-    console.log("begin() begin!");
     load_current_quiz();
     wait_for_answer();
 };
@@ -71,8 +70,15 @@ var load_current_quiz = function load_current_quiz() {
     current_item = iat_items[current_period - 1];
     timer = new Timer();
     $('html').fadeIn(0);
-    $('#keyword').html(current_item.toString());
+    var is_main_or_sub = void 0;
+    if (determine_item_in_main(current_item)) is_main_or_sub = "main";else is_main_or_sub = "sub";
+    $('#keyword').html(current_item.toString()).removeClass("main sub").addClass(is_main_or_sub);
+
     //$('#progress').html(current_period.toString()+"/"+last_period.toString());
+};
+
+var determine_item_in_main = function determine_item_in_main(keyword) {
+    return main_items.includes(keyword);
 };
 
 var prepare_next_quiz = function prepare_next_quiz() {
@@ -83,20 +89,6 @@ var prepare_next_quiz = function prepare_next_quiz() {
 
 var is_last_period = function is_last_period() {
     return current_period >= last_period;
-};
-
-var save_and_exit_old = function save_and_exit_old() {
-    // save current response and pass over csv format (like OECD iat test)
-    var category_table_csv = convert_to_csv(category_table);
-    var item_table_csv = convert_to_csv(item_table);
-    var keypress_table_csv = convert_to_csv(keypress_table);
-    var iat_table_csv = convert_to_csv(iat_table);
-
-    $('#category_table').val(category_table_csv);
-    $('#item_table').val(item_table_csv);
-    $('#keypress_table').val(keypress_table_csv);
-    $('#iat_table').val(iat_table_csv);
-    $('#form').submit();
 };
 
 var save_and_exit = function save_and_exit() {
@@ -116,7 +108,7 @@ var convert_to_csv = function convert_to_csv(table) {
     var Json2csvParser = require('json2csv').Parser;
     var parser = new Json2csvParser();
     var csv = parser.parse(table);
-    console.log(csv);
+    // console.log(csv);
 };
 
 var wait_for_answer = function wait_for_answer() {
@@ -132,12 +124,12 @@ var Timer = function () {
     }
 
     _createClass(Timer, [{
-        key: "start",
+        key: 'start',
         value: function start() {
             this.start_time = new Date().getTime();
         }
     }, {
-        key: "get_elapsed",
+        key: 'get_elapsed',
         value: function get_elapsed() {
             return new Date().getTime() - this.start_time;
         }
@@ -191,12 +183,12 @@ var iat_table = [];
 
 // global variables initialization
 
-console.log("IAT.html script begin!");
+// console.log("IAT.html script begin!");
 
 category_table.push(new Category(round_number, category.main.left, category.main.right, category.sub.left, category.sub.right, left_keycode, right_keycode));
 item_table.push(new Item(iat_items, correct_sides));
 
-console.log(category);
+// console.log(category);
 
 var current_period = 1;
 var last_period = iat_items.length;
@@ -210,7 +202,7 @@ $(document).keydown(function (event) {
     if (current_period > last_period) {
         display_next_block_box();
         if (event.which === META_KEYCODE) {
-            console.log("meta key pressed!");
+            // console.log("meta key pressed!");
             save_and_exit();
         }
         return;

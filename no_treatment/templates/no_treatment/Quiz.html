@@ -17,7 +17,7 @@
         <div class="row">
             <div class = "col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
             <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <img class="img-responsive" src="{% static image_path %}" alt="QUIZ_IMAGE" width=100% style="display:inline-block">
+                <img class="img-responsive quiz_img_frame" src="{% static image_path %}" alt="QUIZ_IMAGE" width=100%>
             </div>
             <div class = "col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
         </div>
@@ -29,7 +29,7 @@
                 <p>
                     맞으면 키보드의 <span class="emph">{{ left_key }}</span> 키
                 </p>
-                <p>
+                <p class="h4">
                     {{ left_explanation }}
                 </p>
             </div>
@@ -37,7 +37,7 @@
                 <p>
                     맞으면 키보드의 <span class="emph">{{ right_key }}</span> 키
                 </p>
-                <p>
+                <p class="h4">
                     {{ right_explanation }}
                 </p>
             </div>

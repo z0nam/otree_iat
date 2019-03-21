@@ -7,6 +7,7 @@ DEFAULT_BLOCK_NUMBER = 20
 FIRST, SECOND = 0, 1
 LEFT, RIGHT = 99, 100
 
+
 class Block:
     iat_items = []
     correct_side = []
@@ -19,7 +20,7 @@ class Block:
     def __init__(self, block_scheme):
         self.iat_items = []
         self.correct_side = []
-        print("block_scheme:", block_scheme)
+
         self.num_periods = block_scheme['num_periods']
         if block_scheme['left_main_category'] is not None:
             self.left_main_category_index = block_scheme['left_main_category']
@@ -28,10 +29,6 @@ class Block:
             self.left_sub_category_index = block_scheme['left_sub_category']
             self.right_sub_category_index = SECOND if self.left_sub_category_index == FIRST else FIRST
         self.construct()
-        print("left_main_category_index, right_main_category_index",
-              self.left_main_category_index, self.right_main_category_index)
-        print("left_sub_category_index, right_sub_category_index: "
-              ,self.left_sub_category_index, self.right_sub_category_index)
 
     def swap_main_category(self):
         tmp = self.left_main_category_index
@@ -52,7 +49,7 @@ class Block:
         self.swap_sub_category()
         self.determine_correct_side()
 
-    def construct(self):  # todo: wordbundle로부터 랜덤으로 내용 채워넣기
+    def construct(self):
         self.construct_base_iat_list()
 
     def construct_base_iat_list(self):
@@ -174,7 +171,7 @@ class Blocks:
     additional_messages = [  # size must be exactly same as self.iat_block_list
         "",
         "",
-        "위쪽을 보입시오. 따로 제시되던 네 가지 범주가 이제는 함께 나타납니다. 단어는 한 번에 하나씩만 제시되며, 각 단어는 오직 한 가지 범주에만 해당된다는 것을 잊지 마십시오",
+        "위쪽을 보십시오. 따로 제시되던 네 가지 범주가 이제는 함께 나타납니다. 단어는 한 번에 하나씩만 제시되며, 각 단어는 오직 한 가지 범주에만 해당된다는 것을 잊지 마십시오",
         "이번 세트는 직전 세트와 동일합니다. 단어는 한 번에 하나씩만 제시되며, 각 단어는 네 범주 중 오직 한가지 범주에만 해당된다는 것을 잊지 마십시오.",
         "위쪽을 보십시오. 범주의 위치가 바뀌었습니다.",
         "따로 제시되던 네 가지 범주가 함께 나타납니다. 바뀐 범주의 위치에 주의해주십시오. 단어는 한 번에 하나씩만 제시되며, 각 단어는 네 범주 중 오직 한가지 범주에만 해당된다는 것을 잊지 마십시오.",
@@ -212,3 +209,4 @@ class Blocks:
 
 
 default_iat_blocks = Blocks()
+default_iat_block = Block(Blocks.block_set['both'])

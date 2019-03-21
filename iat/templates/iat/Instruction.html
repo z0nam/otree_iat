@@ -1,0 +1,97 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+참여 방법
+{% endblock %}
+
+{% block app_scripts %}
+    <script>
+
+    $(document).keydown(function(event){
+        if (event.which === {{ Constants.META_KEYCODE }}){
+            $("#form").submit();
+        }
+    });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class = "row h5">
+            <div>
+                이 과제에서는 {% for main_category in main_categories %}
+                <span class="emph main">{{ main_category }}</span>,
+                {% endfor %}{% for sub_category in sub_categories %}
+                <span class="emph sub">{{ sub_category }}</span>, {% endfor %} 라는 범주가 화면의 맨 왼쪽과 오른쪽에 나타나고, 그에 해당하는 단어들이 화면 가운데 제시됩니다.
+                각 단어가 나타날 때, 당신은 그 단어가 해당하는 범주에 따라 왼손 또는 오른손으로 <span class="emph black">가능한 빨리
+                응답키를 눌러야 합니다.</span>
+            </div>
+        </div>
+        <div class = "row">
+            <table class="table h3">
+                <tbody>
+                    <tr class="main">
+                        <th scope="row">
+                            {{ main_1 }}
+                        </th>
+                        {% for item in main_1_keywords %}
+                        <td>{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr class="main">
+                        <th scope="row">
+                            {{ main_2}}
+                        </th>
+                        {% for item in main_2_keywords %}
+                        <td>{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr class="sub">
+                        <th scope="row">
+                            {{ sub_1 }}
+                        </th>
+                        {% for item in sub_1_keywords %}
+                        <td>{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr class="sub">
+                        <th scope="row">
+                            {{ sub_2 }}
+                        </th>
+                        {% for item in sub_2_keywords %}
+                        <td>{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class = "row h5">
+            <div>
+                너무 늦게 반응하거나 너무 많은 실수를 하면 검사 결과가 나오지 않거나 해석이 불가능합니다. 실수를 하면
+                빨간 색 <span class="emph">X</span> 표시가 나타납니다. 이 때는 다른 쪽의 키를 눌러서 답을 고치세요.
+                <span class="emph black">최대한 실수를 하지 않으면서 빠른 반응속도가 중요합니다. </span>
+            </div>
+        </div>
+        <div class = "row h5">
+            <div>
+                양손의 중지 또는 검지손가락을 각각 키보드의 <span class="emph black">{{ Constants.LEFT_KEY_NAME }}</span> 키와
+                <span class="emph black">{{ Constants.RIGHT_KEY_NAME }}</span>키 위에 올려두세요.
+            </div>
+        </div>
+        <div class = "row h5">
+            <div>
+                검사는 보통 5분 정도 소요됩니다. 각 안내화면을 충분히 숙지해주십시오.
+                <span class="emph">90&percnt; 이상의 정확도로 응답하신 참가자들 중 열 분을 추첨하여 5,000원 가치의 적립금을 추가로 지급합니다.</span>
+            </div>
+        </div>
+        <div class = "row h1">
+            <div>
+                시작하시려면 <span class="emph black">{{ Constants.META_KEY_NAME }}</span>를 눌러주십시오.
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

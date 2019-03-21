@@ -1,4 +1,4 @@
-console.log("hello, iat!{{Constants.META_KEYCODE}}");
+// console.log("hello, iat!");
 
 class Category {
     constructor(round_number, left_main_category, right_main_category,
@@ -47,7 +47,6 @@ class Iat {
 }
 
 const begin = () => {
-    console.log("begin() begin!");
     load_current_quiz();
     wait_for_answer();
 };
@@ -62,14 +61,22 @@ const hide_all_boxes = () => {
     $('.next_block_box').hide();
     $('.wrong_key_box').css('opacity','0');
     $('.wrong_answer_mark').hide();
-}
+};
 
 const load_current_quiz = () => {
     current_item = iat_items[current_period-1];
     timer = new Timer();
     $('html').fadeIn(0);
-    $('#keyword').html(current_item.toString());
+    let is_main_or_sub;
+    if (determine_item_in_main(current_item)) is_main_or_sub = "main";
+    else is_main_or_sub = "sub";
+    $('#keyword').html(current_item.toString()).removeClass("main sub").addClass(is_main_or_sub);
+
     //$('#progress').html(current_period.toString()+"/"+last_period.toString());
+};
+
+const determine_item_in_main = (keyword) => {
+    return main_items.includes(keyword);
 };
 
 const prepare_next_quiz = () => {
@@ -80,20 +87,6 @@ const prepare_next_quiz = () => {
 
 const is_last_period = () => {
     return (current_period >= last_period)
-};
-
-const save_and_exit_old = () => {
-    // save current response and pass over csv format (like OECD iat test)
-    const category_table_csv = convert_to_csv(category_table);
-    const item_table_csv = convert_to_csv(item_table);
-    const keypress_table_csv = convert_to_csv(keypress_table);
-    const iat_table_csv = convert_to_csv(iat_table);
-
-    $('#category_table').val(category_table_csv);
-    $('#item_table').val(item_table_csv);
-    $('#keypress_table').val(keypress_table_csv);
-    $('#iat_table').val(iat_table_csv);
-    $('#form').submit();
 };
 
 const save_and_exit = () => {
@@ -113,7 +106,7 @@ const convert_to_csv = (table) => {
     const Json2csvParser = require('json2csv').Parser;
     const parser = new Json2csvParser();
     const csv = parser.parse(table);
-    console.log(csv);
+    // console.log(csv);
 };
 
 const wait_for_answer = () => {
@@ -182,14 +175,14 @@ let iat_table = [];
 
 // global variables initialization
 
-console.log("IAT.html script begin!");
+// console.log("IAT.html script begin!");
 
 category_table.push(new Category(round_number, category.main.left,
     category.main.right, category.sub.left, category.sub.right,
     left_keycode, right_keycode));
 item_table.push(new Item(iat_items, correct_sides));
 
-console.log(category);
+// console.log(category);
 
 let current_period = 1;
 const last_period = iat_items.length;
@@ -203,7 +196,7 @@ $(document).keydown(function(event){
     if (current_period>last_period){
         display_next_block_box();
         if(event.which === META_KEYCODE){
-            console.log("meta key pressed!");
+            // console.log("meta key pressed!");
             save_and_exit();
         }
         return;

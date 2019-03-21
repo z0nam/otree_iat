@@ -4,10 +4,10 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Namun Cho <mailto:kberi.namun@gmail.com>'
 
 doc = """
-Your app description
+기초정보 설문조사
 """
 
 
@@ -45,7 +45,48 @@ class Constants(BaseConstants):
         [FAMILY_BOTH_BOTH, "양부모 가정 - 부모 양쪽 비슷한 소득"],
         [FAMILY_SINGLE_FATHER, "한부모 가정 - 아버지"],
         [FAMILY_SINGLE_MOTHER, "한부모 가정 - 어머니"],
-        [FAMILY_OTHER, "기타"]
+        [FAMILY_OTHER, "기타"],
+    ]
+
+    LIVE_WITH_FAMILY, LIVE_WITH_NONFAMILY, ALONE = 1,2,3
+    RESIDENCE_TYPE_CHOICE = [
+        [LIVE_WITH_FAMILY, "가족 동거인 있음"],
+        [LIVE_WITH_NONFAMILY, "가족 동거인 없음"],
+        [ALONE, "동거인 없음"],
+    ]
+
+    FATHER, MOTHER, GRANDFATHER, GRANDMOTHER, SPOUSE, \
+    CHILDREN, SIBLING, ETC, NONAPPLICABLE = 1, 2, 3, 4, 5, 6, 7, 8, 99
+
+    FAMILY_CHOICE = [
+        [FATHER, "부"],
+        [MOTHER, "모"],
+        [GRANDFATHER, "조부"],
+        [GRANDMOTHER, "조모"],
+        [SPOUSE, "배우자"],
+        [CHILDREN, "자녀"],
+        [SIBLING, "형제"],
+        [ETC, "그 외 친척"],
+        [NONAPPLICABLE, "해당없음(가족동거인 없음)"],
+    ]
+
+    OCCUPATION_CHOICE = [
+        [1, "농업"],
+        [2, "제조업"],
+        [3, "공무원"],
+        [4, "전문직"],
+        [5, "무직"],
+        [99, "기타"],
+    ]
+
+    EDUCATION_CHOICE = [
+        [1, "초졸 이하"],
+        [2, "초졸"],
+        [3, "중졸"],
+        [4, "고졸"],
+        [5, "대학졸"],
+        [6, "대학원졸"],
+        [99, "모름, 무응답"]
     ]
 
     NO,UNDER_M100,M100,M200,M300,M400,OVER_M500 = 1,2,3,4,5,6,7
@@ -69,39 +110,60 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     born_year = models.IntegerField(
-        label = "태어난 해 (4자리)",
+        label = "선생님은 몇년도에 태어나셨습니까? (4자리)",
     )
 
     born_month = models.IntegerField(
-        label = "태어난 달",
+        label = "태어난 달을 선택해주세요",
         choices = range(1,13),
         widget = widgets.RadioSelectHorizontal,
     )
 
     gender = models.IntegerField(
-        label = "성별",
+        label = "선생님의 성별은 무엇입니까?",
         choices = Constants.GENDER_CHOICE,
         widget = widgets.RadioSelectHorizontal,
     )
 
     marriage_state = models.IntegerField(
-        label = "결혼 상태",
+        label = "선생님의 결혼 상태는 다음 중 무엇입니까?",
         choices = Constants.MARRIAGE_CHOICE,
         widget = widgets.RadioSelectHorizontal,
     )
 
     family_income_type = models.IntegerField(
-        label = "가정 환경 - 주된 소득 주체",
+        label = "선생님의 가정은 어떤 형태인지요? 또한 가족 중에서 주로 소득을 버는 사람은 누구입니까?",
         choices = Constants.FAMILY_INCOME_CHOICE,
         widget = widgets.RadioSelectHorizontal,
     )
         # 'residence_type',
+    residence_type = models.IntegerField(
+        label = "선생님의 거주 형태는 무엇인가요?",
+        choices = Constants.RESIDENCE_TYPE_CHOICE,
+        widget = widgets.RadioSelectHorizontal,
+    )
         # 'family_living_with',
+    # family_living_with = models.IntegerField(
+    #     label = "(가족 동거인 있는 경우만 응답) 함께 사는 동거 가족은 누구입니까? (복수응답 가능)",
+    #     choices = Constants.FAMILY_CHOICE,
+    #     widget = widgets.CheckboxSelectMultiple,
+    # )
         # 'occupation',
+    occupation = models.IntegerField(
+        label = "선생님의 직업은 무엇입니까? (수정필요)",
+        choices = Constants.OCCUPATION_CHOICE,
+        widget = widgets.RadioSelectHorizontal,
+    )
+
+    education = models.IntegerField(
+        label = "선생님의 학력은 무엇입니까? (수정필요)",
+        choices = Constants.EDUCATION_CHOICE,
+        widget = widgets.RadioSelectHorizontal,
+    )
         # 'education',
         
     income_level = models.IntegerField(
-        label = "지난 6개월 평균 월 소득 (세후)",
+        label = "선생님의 지난 6개월 평균 월 소득 (세후)은 얼마 정도인지요?",
         choices = Constants.INCOME_LEVEL_CHOICE,
         widget = widgets.RadioSelect,
     )

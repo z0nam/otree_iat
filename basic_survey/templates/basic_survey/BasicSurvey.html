@@ -6,20 +6,35 @@
 {% endblock %}
 
 {% block content %}
-    <p>아래의 질문들에 답해주시기 바랍니다. </p>
+    <p>
+        아래의 질문들에 답해주시기 바랍니다. 답변내용은 오직 연구 목적으로만 사용되며,
+        한국 행동경제학 연구소는 선생님의 개인 정보를 알 수 있는 방법이 전혀 없습니다.
+        또한 선생님의 답변 내용은 암호화되고 익명화되어 관리됩니다.
+    </p>
 
-    {% formfield player.born_year label="선생님께서는 몇년도에 태어나셨습니까? (4자리)"%}
+    {% formfield player.born_year %}
 
-    {% formfield player.born_month label="태어난 달" %}
+    {% formfield player.born_month %}
 
-    {% formfield player.gender  label="선생님의 성별은 무엇입니까?" %}
+    {% formfield player.gender %}
 
-    {% formfield player.marriage_state label = "결혼 상태" %}
+    {% formfield player.marriage_state %}
 
-    {% formfield player.family_income_type label = "가족 형태 및 주소득자" %}
+    {% formfield player.family_income_type %}
 
-    {% formfield player.income_level label = "지난 6개월동안의 세금을 제외한 평균 월소득 수준 (실수령액)"%}
+    {% formfield player.residence_type %}
 
-    {% next_button %}
+{#    {% formfield player.family_living_with %}#}
+
+    {% formfield player.occupation %}
+
+    {% formfield player.education %}
+
+    {% formfield player.income_level %}
+
+
+    <button class="btn btn-primary btn-large">
+        모든 질문에 답하셨으면 이 버튼을 클릭하여 설문을 종료해주시기 바랍니다
+    </button>
 
 {% endblock %}

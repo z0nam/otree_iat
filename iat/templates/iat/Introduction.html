@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    내재적 연관성 검사
+
 {% endblock %}
 
 {% block app_scripts %}
@@ -22,7 +22,7 @@
         <div class = "row">
             <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6" id="left_panel">
 {#            style="width:50%;display:inline-block;background-color:cornflowerblue"#}
-                <h2 class="emph">
+                <h2 class="emph black">
                     {{ Constants.LEFT_KEY_NAME }} 키
                 </h2>
                 <h1>
@@ -38,7 +38,7 @@
             </div>
             <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6" id="right_panel">
 {#                style="width:50%;display:inline-block;background-color:aquamarine"#}
-                <h2 class="emph">
+                <h2 class="emph black">
                     {{ Constants.RIGHT_KEY_NAME }} 키
                 </h2>
                 <h1>
@@ -58,7 +58,7 @@
                 총 {{ Constants.num_rounds }}세트 중 {{ subsession.round_number }}번째
             </h2>
         </div>
-        <div class = "row">
+        <div class = "row blink">
             <h4>
                 {{ additional_message }}
             </h4>
@@ -98,8 +98,5 @@
         </div>
     </div>
 
-    <form id="form">
-        <input type="submit" name="hidden_submit" id="hidden_submit" style="display:none">
-    </form>
 
 {% endblock %}

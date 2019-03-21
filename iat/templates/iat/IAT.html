@@ -8,9 +8,14 @@
 
 {% block app_scripts %}
     <script>
+    /*
+    All variables which take their values from django tag should be placed here
+    with ES5 format. I.e., use var rather than let or const.
+
+     */
         var round_number = {{ subsession.round_number }};
         var iat_items = {{ iat_items|json }};
-        console.log(iat_items);
+
         var correct_sides = {{ correct_sides|json }};
         var side = {
             'left': {{ Constants.LEFT }},
@@ -18,7 +23,7 @@
         };
         var left_keycode = {{ Constants.LEFT_KEYCODE }};
         var right_keycode = {{ Constants.RIGHT_KEYCODE }};
-        console.log(correct_sides);
+
         var category = {
             'main': {
                 'left': {{ left_main_category|json }},
@@ -29,16 +34,14 @@
                 'right': {{ right_sub_category|json }},
             }
         };
+        var main_items = {{ main_items|json }}
+        var sub_items = {{ sub_items|json }}
         var META_KEYCODE = {{ Constants.META_KEYCODE }}
         var left_category_name = {{ left_category_name|json }};
         var right_category_name = {{ right_category_name|json }};
         var current_item;
     </script>
     <script src="{% static 'iat/lib/iat.js' %}?{{ seed_for_refresh_js_cache }}"></script>
-    <script>
-
-
-    </script>
 {% endblock %}
 
 {% block content %}

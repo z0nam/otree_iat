@@ -22,11 +22,13 @@
 
 {% block content %}
    <h3>
-    {{ name }} 님은
+    이 식물은 {{ name }} 입니다.
+   </h3>
+    <h3>
     {% if player.location_of_correct_answer == 'left' %}
-        {{ left_explanation }} 입니다.
+        {{ left_explanation }}
     {% else %}
-        {{ right_explanation }} 입니다.
+        {{ right_explanation }}
     {% endif %}
     </h3>
 

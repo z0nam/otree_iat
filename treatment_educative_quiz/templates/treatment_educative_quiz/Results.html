@@ -2,12 +2,38 @@
 {% load otree static %}
 
 {% block title %}
-    Page title
+    {% if player.isCorrect %} 맞습니다!
+    {% else %} 틀렸습니다!
+    {% endif %}
+{% endblock %}
+
+{% block app_scripts %}
+{#    <script src = {% static 'blank.js' %}?{{ seed_for_refresh }}></script>#}
+    <script>
+        $(document).keydown(function(event){
+        if (event.which === {{ Constants.META_KEYCODE }}){
+            console.log("32 pressed");
+            $("#form").submit();
+        }
+    });
+    </script>
+
 {% endblock %}
 
 {% block content %}
+   <h3>
+    {{ name }} 에 대하여:
+    {% if player.location_of_correct_answer == 'left' %}
+        {{ left_explanation }}
+    {% else %}
+        {{ right_explanation }}
+    {% endif %}
+    </h3>
 
-    {% next_button %}
+    <div>
+    <button class="btn btn-primary btn-large">{{ Constants.META_KEYNAME }} 키를 눌러서 다음으로 이동해주세요</button>
+    </div>
+
 {% endblock %}
 
 

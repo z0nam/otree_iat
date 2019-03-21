@@ -13,10 +13,10 @@ class BasicSurvey(Page):
         'gender',
         'marriage_state',
         'family_income_type',
-        # 'residence_type',
+        'residence_type',
         # 'family_living_with',
-        # 'occupation',
-        # 'education',
+        'occupation',
+        'education',
         'income_level',
     ]
 

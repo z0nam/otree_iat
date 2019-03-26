@@ -76,7 +76,7 @@ const load_current_quiz = () => {
 };
 
 const determine_item_in_main = (keyword) => {
-    return main_items.includes(keyword);
+    return main_items.indexOf(keyword) !== -1; // do not use includes() : IE do not support it.
 };
 
 const prepare_next_quiz = () => {

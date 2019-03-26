@@ -78,7 +78,7 @@ var load_current_quiz = function load_current_quiz() {
 };
 
 var determine_item_in_main = function determine_item_in_main(keyword) {
-    return main_items.includes(keyword);
+    return main_items.indexOf(keyword) !== -1;
 };
 
 var prepare_next_quiz = function prepare_next_quiz() {

@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    설문조사
+{% endblock %}
+
+{% block content %}
+    <h2>아래의 질문들에 답해주시기 바랍니다.</h2>
+    <div class="container">
+        <div class="row wrong_key_box">
+            <p>전부 답해주셔야 다음으로 넘어갈 수 있습니다.</p>
+            <p>여기부터는 타이머가 작동하지 않습니다. </p>
+            <p>따라서 충분히 시간을 들여서 답변하셔도 상관없습니다.</p>
+        </div>
+    </div>
+    {% formfield player.value_q_11 %}
+    {% formfield player.value_q_12 %}
+    {% formfield player.value_q_13 %}
+    {% formfield player.value_q_14 %}
+    {% formfield player.value_q_15 %}
+    {% formfield player.value_q_16 %}
+    {% formfield player.value_q_17 %}
+    {% formfield player.value_q_18 %}
+    {% formfield player.value_q_19 %}
+    {% formfield player.value_q_20 %}
+
+    <button class="btn btn-primary btn-large">
+        모든 질문에 답하셨으면 이 버튼을 클릭하여 다음 페이지로 진행해주시기 바랍니다
+    </button>
+
+{% endblock %}

@@ -58,7 +58,7 @@
                 총 {{ Constants.num_rounds }}세트 중 {{ subsession.round_number }}번째
             </h2>
         </div>
-        <div class = "row blink">
+        <div class = "row alert alert-danger">
             <h4>
                 {{ additional_message }}
             </h4>
@@ -85,6 +85,9 @@
 
                 {% endif %}범주의 항목을 분류하기 위하여 오른손의 손가락을 <span class="emph">{{ Constants.RIGHT_KEY_NAME }}</span>키 위에 올려두세요.
             </h4>
+            <div>
+                <img src="{% static "global/kbdEI.jpeg" %}" alt="KBD_IMAGE" width="100%">
+            </div>
             <h4>
                 실수를 하면 <span style="color:red;">빨간색 X</span> 표시가 나타납니다.
                 이때는 다른 손의 키를 눌러서 답을 고치세요.

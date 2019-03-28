@@ -30,7 +30,6 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
 
     def creating_session(self):  # shuffle quiz order
-        # print("######creating session!")
         if self.round_number == 1:
             for p in self.get_players():
                 doubled_quiz_list = Constants.quizzes + Constants.quizzes  # 두번씩 나와야 하므로

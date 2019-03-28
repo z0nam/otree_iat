@@ -4,6 +4,8 @@ from .models import Constants, Player, Subsession
 from category_words import word_bundle
 import iat_order
 import random
+import time
+from IAT_Global_Constants import GlobalConstants
 
 LEFT, RIGHT = iat_order.LEFT, iat_order.RIGHT
 FIRST, SECOND = iat_order.LEFT, iat_order.RIGHT
@@ -13,6 +15,11 @@ class Instruction(Page):
 
     def is_displayed(self):
         return self.round_number == 1
+
+    timer_text = GlobalConstants.TIMER_TEXT
+
+    def get_timeout_seconds(self):
+        return self.participant.vars['expiry'] - time.time()
 
     def vars_for_template(self):
         vars_to_return = {}

@@ -7,7 +7,6 @@ DEFAULT_BLOCK_NUMBER = 20
 FIRST, SECOND = 0, 1
 LEFT, RIGHT = 99, 100
 
-
 class Block:
     iat_items = []
     correct_side = []

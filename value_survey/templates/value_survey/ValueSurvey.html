@@ -2,48 +2,22 @@
 {% load otree static %}
 
 {% block title %}
-    가치관 설문조사
+    설문조사
 {% endblock %}
 
 {% block content %}
-    <h2>아래의 질문들에 답해주시기 바랍니다</h2>
+    <h2>아래의 질문들에 답해주시기 바랍니다.</h2>
+    <div class="container">
+        <div class="row">
+            <p class="emph">전부 답해주셔야 다음으로 넘어갈 수 있습니다.</p>
+            <p>이 페이지부터는  타이머가 작동하지 않으므로 충분히 시간을 들여서 답변하셔도 상관없습니다.</p>
+        </div>
+    </div>
 
     {% formfield player.faminist_self_awareness label = "'나(설문응답자)는 페미니스트이다' 라는 생각에 동의하십니까?" %}
     {% formfield player.faminist_definition label = "'페미니스트'라는 것의 의미가 무엇인지 선생님의 생각을 자유롭게 적어 주시기 바랍니다." %}
     {% formfield player.female_boss_experience label = "여성 상사와의 업무 경험이 있으신가요?" %}
     {% formfield player.male_boss_experience label = "남성 상사와의 업무 경험이 있으신가요?" %}
-
-    <h2>이어지는 아래의 문장에 대해 동의하는 정도를 답해주시기 바랍니다. </h2>
-
-    {% formfield player.value_q_01 %}
-    {% formfield player.value_q_02 %}
-    {% formfield player.value_q_03 %}
-    {% formfield player.value_q_04 %}
-    {% formfield player.value_q_05 %}
-    {% formfield player.value_q_06 %}
-    {% formfield player.value_q_07 %}
-    {% formfield player.value_q_08 %}
-    {% formfield player.value_q_09 %}
-    {% formfield player.value_q_10 %}
-    {% formfield player.value_q_11 %}
-    {% formfield player.value_q_12 %}
-    {% formfield player.value_q_13 %}
-    {% formfield player.value_q_14 %}
-    {% formfield player.value_q_15 %}
-    {% formfield player.value_q_16 %}
-    {% formfield player.value_q_17 %}
-    {% formfield player.value_q_18 %}
-    {% formfield player.value_q_19 %}
-    {% formfield player.value_q_20 %}
-    {% formfield player.value_q_21 %}
-    {% formfield player.value_q_22 %}
-    {% formfield player.value_q_23 %}
-    {% formfield player.value_q_24 %}
-    {% formfield player.value_q_25 %}
-    {% formfield player.value_q_26 %}
-    {% formfield player.value_q_27 %}
-    {% formfield player.value_q_28 %}
-    {% formfield player.value_q_29 %}
 
     <button class="btn btn-primary btn-large">모든 질문에 답하셨으면 이 버튼을 클릭하여 다음 페이지로 진행해주시기 바랍니다</button>
 

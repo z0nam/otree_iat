@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    시간 초과
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row alert alert-danger">
+            <h1>
+                퀴즈를 푸는데 필요한 최소 시간인 {{ MINIMUM_TIME_MINUTES }}분을 초과했습니다.
+            </h1>
+        </div>
+        <div class="row">
+            퀴즈 시작시간: {{ START_TIME }}
+        </div>
+        <div class="row">
+            퀴즈 종료시간: {{ END_TIME }}
+        </div>
+        <div class="row">
+            퀴즈 소요시간: {{ ELAPSED_TIME }}
+        </div>
+        <div class="row">
+            다시 하시려면 마이크로밀엠브레인에 문의해주시길 바랍니다.
+        </div>
+        <div class="row alert alert-warning">
+            이 퀴즈를 위해 부여받은 링크는 만료되었습니다. 재시도를 위해서는 새로운 링크가 필요합니다.
+        </div>
+
+        <div class="row">
+            <form action="https://www.panel.co.kr/user/main/" method="get">
+                <input type="hidden" name="status" value="TIMEOUT">
+                <input type="hidden" name="panel_id" value="{{ participant.vars.panel_id }}">
+                <input type="submit" value="엠브레인 홈페이지로 이동하기" class="btn btn-primary btn-large">
+                    <span class="blink">&larr; 이 버튼을 클릭하면 엠브레인사 홈페이지로 이동합니다</span>
+                </input>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

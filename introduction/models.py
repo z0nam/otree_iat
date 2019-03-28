@@ -26,4 +26,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    panel_id = models.StringField()
+

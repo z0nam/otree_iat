@@ -3,6 +3,8 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 import random
+import time
+from IAT_Global_Constants import GlobalConstants
 
 
 class Quiz(Page):
@@ -13,9 +15,14 @@ class Quiz(Page):
         'answer',
     ]
 
+    timer_text = GlobalConstants.TIMER_TEXT
+
+    def get_timeout_seconds(self):
+        return self.participant.vars['expiry'] - time.time()
+
     def vars_for_template(self):
         current_quiz = self.participant.vars['shuffled_quiz_set'][self.round_number-1]
-        print("***round number:{}".format(self.round_number))
+        # print("***round number:{}".format(self.round_number))
         # print("****length of self.participant.vars: {}".format(len(self.participant.vars)))
         location_of_correct_answer = random.choice(['left', 'right'])
         self.player.location_of_correct_answer = location_of_correct_answer

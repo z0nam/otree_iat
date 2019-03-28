@@ -17,81 +17,81 @@ SESSION_CONFIGS = [
     {
        'name': 'introduction',
        'display_name': "실험 안내문 및 동의서",
-       'num_demo_participants': 1,
+       'num_demo_participants': 5,
        'app_sequence': ['introduction'],
     },
     {
         'name': 'treatment_image_female',
         'display_name': "여성이미지 처치",
         'num_demo_participants': 3,
-        'app_sequence': ['treatment_image_female'],
+        'app_sequence': ['introduction', 'treatment_image_female'],
         'treatment': 'treatment_image_female',
     },
     {
         'name': 'treatment_image_male',
         'display_name': "남성이미지 처치",
         'num_demo_participants': 3,
-        'app_sequence': ['treatment_image_male'],
+        'app_sequence': ['introduction', 'treatment_image_male'],
         'treatment': 'treatment_image_male',
     },
     {
         'name': 'no_treatment',
         'display_name': "중립이미지(no_treatment) 처치",
         'num_demo_participants': 3,
-        'app_sequence': ['no_treatment'],
+        'app_sequence': ['introduction', 'no_treatment'],
         'treatment': 'no_treatment',
     },
     {
         'name': 'treatment_educative_quiz',
         'display_name': "인식개선퀴즈 처치",
         'num_demo_participants': 3,
-        'app_sequence': ['treatment_educative_quiz'],
+        'app_sequence': ['introduction', 'treatment_educative_quiz'],
         'treatment': 'treatment_educative_quiz',
     },
     {
         'name': 'value_survey',
         'display_name': "가부장적 가치관 설문조사",
         'num_demo_participants': 1,
-        'app_sequence': ['value_survey'],
+        'app_sequence': ['introduction', 'value_survey'],
     },
     {
         'name': 'basic_survey',
         'display_name': "기초 설문조사",
         'num_demo_participants': 1,
-        'app_sequence': ['basic_survey'],
+        'app_sequence': ['introduction', 'basic_survey'],
     },
     {
         'name': 'iat',
         'display_name': "IAT",
         'num_demo_participants': 3,
-        'app_sequence': ['iat'],
+        'app_sequence': ['introduction', 'iat'],
     },
     {
         'name': 'kberi_treatment_image_female',
         'display_name': "IAT for KBERI (여성이미지처치)",
         'num_demo_participants': 3,
-        'app_sequence': ['introduction', 'treatment_image_female', 'iat', 'value_survey', 'basic_survey'],
+        'app_sequence': ['introduction', 'treatment_image_female', 'iat', 'value_survey'],
         'treatment': 'treatment_image_female',
     },
     {
         'name': 'kberi_treatment_image_male',
         'display_name': "IAT for KBERI (남성이미지처치)",
         'num_demo_participants': 3,
-        'app_sequence': ['introduction', 'treatment_image_male', 'iat', 'value_survey', 'basic_survey'],
+        'app_sequence': ['introduction', 'treatment_image_male', 'iat', 'value_survey'],
         'treatment': 'treatment_image_male',
     },
     {
         'name': 'kberi_no_treatment',
         'display_name': "IAT for KBERI (꽃과나비이미지처치)",
         'num_demo_participants': 3,
-        'app_sequence': ['introduction', 'no_treatment', 'iat', 'value_survey', 'basic_survey'],
+        'app_sequence': ['introduction', 'no_treatment', 'iat', 'value_survey'],
         'treatment': 'no_treatment',
     },
     {
         'name': 'kberi_treatment_educative_quiz',
         'display_name': "IAT for KBERI (인식개선퀴즈처치)",
         'num_demo_participants': 3,
-        'app_sequence': ['introduction', 'no_treatment', 'iat', 'value_survey', 'basic_survey'],
+        'app_sequence': ['introduction', 'treatment_educative_quiz', 'iat', 'value_survey'],
         'treatment': 'educative_quiz',
     },
 ]
@@ -100,6 +100,7 @@ SESSION_CONFIGS = [
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'ko'
+# TIME_ZONE = 'Asia/Seoul'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'KRW'
@@ -118,3 +119,10 @@ SECRET_KEY = 'rl6fs##!%y73glp&vojb!73ly^j#92201erbzlj!l)yh52l0g3'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
+
+
+# declare urls.py to get panel_id from embrain
+
+ROOT_URLCONF = 'urls'
+
+

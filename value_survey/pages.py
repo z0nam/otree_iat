@@ -121,12 +121,13 @@ class ValueSurvey04(Page):
 
 class Thanks(Page):
     def is_displayed(self):
-        params = {
-            'panel_id': self.participant.vars['panel_id'],
-        }
-        r = requests.get(url=GlobalConstants.EXTERNAL_URL, params=params)
-        self.player.embrain_response = str(r.content)
-        print("response: ", str(r.content))
+        # NOTE: this is commented because requests.exceptions.ConnectionError: HTTPConnectionPool(host='survey.panel.co.kr', port=80): Max retries exceeded with url
+        # params = {
+        #     'panel_id': self.participant.vars['panel_id'],
+        # }
+        # r = requests.get(url=GlobalConstants.EXTERNAL_URL, params=params)
+        # self.player.embrain_response = str(r.content)
+        # print("response: ", str(r.content))
         return True
 
     def vars_for_template(self):

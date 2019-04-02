@@ -54,6 +54,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
+    embrain_response = models.StringField()
     faminist_self_awareness = models.IntegerField(
         label="'나는 페미니스트이다' 에 대한 자신의 인식",
         choices=Constants.L5_CHOICES,

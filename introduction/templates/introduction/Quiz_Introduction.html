@@ -4,11 +4,10 @@
 {% block content %}
     {{ block.super }}
 
-    <div class="container">
+    <div class="alert-warning">
         <h3>
-        주의: 첫 퀴즈를 시작한 시점부터 <span style="color:red">{{ EXPIRY_MINUTES }}분</span> 내에 마지막 퀴즈를 완료하시지
-            않을 경우 퀴즈는 자동 중단되어 보상을 받을 수 없습니다.
-            이 점 유의하시기 바랍니다. 타이머는 위 버튼을 누른 순간부터 작동합니다.
+        주의: 본 조사는 첫 퀴즈를 시작한 시점부터 <span style="color:red">{{ EXPIRY_MINUTES }}분</span>
+            내에 마지막 퀴즈를 완료하시는 것을 권장합니다.
         </h3>
     </div>
 

@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+감사합니다!
+{% endblock %}
+
+{% block content %}
+    <h4 class="alert-primary">
+    대단히 감사합니다! 모든 조사가 완료되었습니다.
+    </h4>
+    <h5>
+    아래 버튼을 클릭하여 엠브레인 페이지로 이동해 주시기 바랍니다.
+    </h5>
+    <a class = 'btn btn-primary btn-success' href="{{ URL }}?panel_id={{ PANEL_ID }}">엠브레인 사이트로 이동하기</a>
+{% endblock %}

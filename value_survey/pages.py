@@ -6,6 +6,8 @@ from datetime import timedelta
 from IAT_Global_Constants import GlobalConstants
 import requests
 
+from django.http import HttpResponseRedirect
+
 
 class TimeOutError(Page): # timeout 구현하지 않을 경우 미사용
 
@@ -29,8 +31,8 @@ class TimeOutError(Page): # timeout 구현하지 않을 경우 미사용
         current_time = time.time()
         elapsed_time = current_time - start_time
         print("elapsed_time =", elapsed_time)
-        elapsed_time = int(round(elapsed_time / 60, 0))
-        print("elapsed_time =", elapsed_time)
+        # elapsed_time = int(round(elapsed_time / 60, 0))
+        # print("elapsed_time =", elapsed_time)
 
         start_time_str \
             = datetime.datetime.fromtimestamp(start_time).strftime(GlobalConstants.TIME_FORMAT)
@@ -50,6 +52,10 @@ class ValueSurvey(Page):
 
     # def is_displayed(self):
     #     return not self.participant.vars['is_timeout']
+    def is_displayed(self):
+        self.player.elapsed_time_seconds = self.player.get_elapsed_time_seconds()
+        return True
+
 
     form_model = 'player'
     form_fields = [
@@ -120,15 +126,12 @@ class ValueSurvey04(Page):
 
 
 class Thanks(Page):
-    def is_displayed(self):
-        # NOTE: this is commented because requests.exceptions.ConnectionError: HTTPConnectionPool(host='survey.panel.co.kr', port=80): Max retries exceeded with url
-        # params = {
-        #     'panel_id': self.participant.vars['panel_id'],
-        # }
-        # r = requests.get(url=GlobalConstants.EXTERNAL_URL, params=params)
-        # self.player.embrain_response = str(r.content)
-        # print("response: ", str(r.content))
-        return True
+
+    def get(self):
+        url = GlobalConstants.EXTERNAL_URL + "?panel_id=" \
+              + self.participant.vars['panel_id']+"&elapsed_time_sec="+str(self.player.elapsed_time_seconds)
+        print("return url:", url)
+        return HttpResponseRedirect(url)
 
     def vars_for_template(self):
         return {
@@ -138,7 +141,6 @@ class Thanks(Page):
 
 
 page_sequence = [
-    # TimeOutError,
     ValueSurvey,
     ValueSurvey02,
     ValueSurvey03,

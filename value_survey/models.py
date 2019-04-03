@@ -2,6 +2,7 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
 )
 from . import value_questions
+import time
 
 
 author = 'Namun Cho <mailto:kberi.namun@gmail.com>'
@@ -56,6 +57,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     embrain_response = models.StringField()
+    elapsed_time_seconds = models.IntegerField()
     faminist_self_awareness = models.IntegerField(
         label="'나는 페미니스트이다' 에 대한 자신의 인식",
         choices=Constants.L5_CHOICES,
@@ -225,5 +227,9 @@ class Player(BasePlayer):
         choices=Constants.L6_CHOICES,
     )
 
-
-
+    def get_elapsed_time_seconds(self):
+        start_time = self.participant.vars['start_time']
+        current_time = time.time()
+        elapsed_time = current_time - start_time
+        # print("elapsed_time =", elapsed_time)
+        return int(elapsed_time)

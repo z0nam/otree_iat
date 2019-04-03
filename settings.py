@@ -106,7 +106,12 @@ LANGUAGE_CODE = 'ko'
 REAL_WORLD_CURRENCY_CODE = 'KRW'
 USE_POINTS = True
 
-ROOMS = []
+ROOMS = [
+    {
+        'name': 'test001',
+        'display_name': 'room panel_id test',
+    },
+]
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable

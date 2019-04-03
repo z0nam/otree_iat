@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-참여 방법
+순발력 테스트 참여 방법
 {% endblock %}
 
 {% block app_scripts %}
@@ -79,9 +79,6 @@
                 양손의 중지 또는 검지손가락을 각각 키보드의 <span class="emph black">{{ Constants.LEFT_KEY_NAME }}</span> 키와
                 <span class="emph black">{{ Constants.RIGHT_KEY_NAME }}</span>키 위에 올려두세요.
             </div>
-            <div>
-                <img src="{% static "global/kbdEI.jpeg" %}" alt="KBD_IMAGE" width="100%">
-            </div>
         </div>
         <div class = "row h5">
             <div>
@@ -93,6 +90,9 @@
             <div>
                 시작하시려면 <span class="emph black">{{ Constants.META_KEY_NAME }}</span>를 눌러주십시오.
             </div>
+        </div>
+        <div class="text-center">
+            <img src="{% static "global/kbdEI.jpeg" %}" alt="KBD_IMAGE" width="60%">
         </div>
     </div>
 

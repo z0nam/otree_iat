@@ -53,7 +53,7 @@ class ValueSurvey(Page):
     # def is_displayed(self):
     #     return not self.participant.vars['is_timeout']
     def is_displayed(self):
-        self.player.elapsed_time_seconds = self.player.get_elapsed_time_seconds()
+        self.player.elapsed_time_seconds = self.player.get_elapsed_time_seconds() or "UNWATCHED"
         return True
 
 

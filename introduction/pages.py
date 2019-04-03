@@ -9,8 +9,9 @@ import time
 class Introduction(Page):
 
     def vars_for_template(self):
-        self.player.panel_id = self.participant.label
-        self.participant.vars['panel_id'] = self.participant.label
+        self.player.panel_id = self.participant.label or GlobalConstants.DEFAULT_PANEL_ID
+        self.participant.label = self.player.panel_id
+        self.participant.vars['panel_id'] = self.player.panel_id
         return{
             'panel_id': self.player.panel_id
         }

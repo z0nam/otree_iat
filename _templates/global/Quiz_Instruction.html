@@ -3,23 +3,23 @@
 
 {% block content %}
     <div class="container">
-        <div class = "row h5">
+        <div class = "row h4">
             <div>
                 이어지는 화면에서는 몇 개의 퀴즈가 출제됩니다.
                 잘 읽어보시고 맞다고 생각하시는 쪽을 택해주시기 바랍니다.
                 경우에 따라 동일한 질문이 나올 수도 있습니다.
             </div>
         </div>
-        <div class = "row h5">
+        <div class = "row h4">
             <div>
                 두 가지 설명 중 왼쪽 설명이 맞다고 생각하시면 <span class="emph">키보드의 1키</span>를,
                 오른쪽 설명이 맞다고 생각하시면 <span class="emph">키보드의 0 키</span>를 눌러주시기 바랍니다.
             </div>
-            <div>
-                <img src="{% static "global/kbd10.jpeg" %}" alt="KBD_IMAGE" width="100%">
+            <div class="text-center">
+                <img src="{% static "global/kbd10.jpeg" %}" alt="KBD_IMAGE" width="60%">
             </div>
         </div>
-        <div>
+        <div class="text-center">
             <button class="otree-btn-next btn btn-primary">준비되셨으면 이 버튼을 클릭해주세요</button>
         </div>
     </div>

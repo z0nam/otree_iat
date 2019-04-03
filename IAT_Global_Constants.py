@@ -9,6 +9,8 @@ class GlobalConstants:
 
     IS_TEST = False
 
+    DEFAULT_PANEL_ID = "NO_PANEL_ID"
+
     if IS_TEST:
         EXTERNAL_URL = EXTERNAL_URL_TEST
         EXPIRE_SECONDS = EXPIRE_SECONDS_TEST

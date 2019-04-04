@@ -9,20 +9,20 @@ import quiz_lists
 author = 'Namun Cho <mailto:kberi.namun@gmail.com>'
 
 doc = """
-성평등 인식개선 퀴즈 treatment
+중립 이미지 treatment
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'treatment_educative_quiz'
-    quiz_title = "성과 사회적 역할에 대한 인식 퀴즈"
+    name_in_url = 'quiz_kd'
+    quiz_title = "사물 퀴즈"
     left_keycode = 49  # 1
     right_keycode = 48  # 0
     META_KEYCODE = 32  # space bar
     META_KEYNAME = "스페이스 바"
     players_per_group = None
 
-    quizzes = quiz_lists.educative_quizzes
+    quizzes = quiz_lists.flower_quizzes
 
     num_rounds = len(quizzes) * 2
 
@@ -30,6 +30,7 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
 
     def creating_session(self):  # shuffle quiz order
+        # print("######creating session!")
         if self.round_number == 1:
             for p in self.get_players():
                 doubled_quiz_list = Constants.quizzes + Constants.quizzes  # 두번씩 나와야 하므로

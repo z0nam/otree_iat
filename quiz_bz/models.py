@@ -15,7 +15,7 @@ doc = """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'treatment_image_female'
+    name_in_url = 'quiz_bz'
     quiz_title = "인물 퀴즈"
     left_keycode = 49 # 1
     right_keycode = 48 # 0

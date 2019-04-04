@@ -9,20 +9,20 @@ import quiz_lists
 author = 'Namun Cho <mailto:kberi.namun@gmail.com>'
 
 doc = """
-중립 이미지 treatment
+남성 이미지 treatment
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'no_treatment'
-    quiz_title = "사물 퀴즈"
+    name_in_url = 'quiz_ra'
+    quiz_title = "인물 퀴즈"
     left_keycode = 49  # 1
     right_keycode = 48  # 0
     META_KEYCODE = 32  # space bar
     META_KEYNAME = "스페이스 바"
     players_per_group = None
 
-    quizzes = quiz_lists.flower_quizzes
+    quizzes = quiz_lists.male_quizzes
 
     num_rounds = len(quizzes) * 2
 
@@ -50,3 +50,4 @@ class Player(BasePlayer):
 
     def get_current_quiz(self):
         return self.participant.vars
+

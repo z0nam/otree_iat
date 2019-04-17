@@ -1,0 +1,18 @@
+{% extends "global/Quiz_Instruction.html" %}
+{% load otree static %}
+
+{% block content %}
+    {{ block.super }}
+
+    <div class="container">
+        <div class="alert-warning row">
+            <h4>
+            주의: 본 조사는 버튼을 클릭한 직후부터 시작되는 순발력 테스트를 중단없이 이어서
+                참여하셔야 합니다. 또, 두 가지 테스트에 총 <span style="color:red">{{ EXPIRY_MINUTES }}분</span>
+                을 초과할 경우 순간적 시각 피로도가 증가하므로 <span style="color:red">{{ EXPIRY_MINUTES }}분</span> 이내에
+                완료하시기 바랍니다.
+            </h4>
+        </div>
+    </div>
+
+{% endblock %}

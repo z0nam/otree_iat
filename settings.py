@@ -94,6 +94,13 @@ SESSION_CONFIGS = [
         'app_sequence': ['introduction', 'quiz_ab', 'iat', 'value_survey'],
         'treatment': 'educative_quiz',
     },
+    {
+        'name': 'kberi_iat_demo',
+        'display_name': "IAT for KBERI (데모)",
+        'num_demo_participants': 3,
+        'app_sequence': ['introduction_demo', 'iat', 'value_survey'],
+        'treatment': 'demo',
+    },
 ]
 
 
